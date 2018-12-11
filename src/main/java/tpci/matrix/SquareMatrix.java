@@ -50,6 +50,24 @@ public class SquareMatrix {
 	public void setElementAt(int i, int j, double x) {
 		this.values[i][j] = x;
 	}
+	
+	public SquareMatrix plus(SquareMatrix other) {
+		double[][] sortie = new double[this.size][this.size];
+		if(this.size != other.getSize()){
+			throw new IndexOutOfBoundsException("matrice de différentes tailles");
+			
+		}
+		else {
+			for(int i=0;i< this.size ; i++) {
+				for(int j=0; j<this.size;j++) {
+					sortie[i][j] = other.values[i][j]+this.values[i][j];
+				}
+			}
+			SquareMatrix m = new SquareMatrix(sortie);
+			return m;
+		}
+		
+	}
 
 
 	@Override

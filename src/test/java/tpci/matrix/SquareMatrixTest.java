@@ -90,5 +90,18 @@ public class SquareMatrixTest {
 		assertEquals(m.getSize(), m2.getSize());
 		assertArrayEquals(m.getValues(), m2.getValues());
 	}
+	@Test
+	public void testplus() {
+		double[][] tab = {{1,2,3},{4,5,6},{7,8,9}};
+		SquareMatrix m = new SquareMatrix(tab);
+		
+			double[][] res = {{1,2,3},{4,5,6},{7,8,9}};
+			SquareMatrix result = new SquareMatrix(res);
+			double[][] t = {{0,0,0},{0,0,0},{0,0,0}};
+			SquareMatrix other = new SquareMatrix(t);
+			assertEquals(result,m.plus(other));
+	}
+	
+	
 
 }
