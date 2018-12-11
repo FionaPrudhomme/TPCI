@@ -1,0 +1,23 @@
+#utilise l'image docker maven pour executer les tests unitaires et compiler lapplication
+# de Gitlab
+image: maven:latest
+# commandes exécutées dans le conteneur docker AVANT les jobs d'intégration continue
+# on pourrait y faire des installations de paquets comme apt-get install python3, etc.
+before_script:
+- mvn --version # pour debug
+- which java # pour debug
+# les étapes : ici on compile puis on teste
+stages:
+- compile
+- test
+# la tâche (job) de l'étape de compilation
+job-build:
+stage: compile
+script:
+- mvn clean compile
+# la tâche (job) de l'étape de test, pour exécuter les tests unitaires
+job-test:
+stage: test
+# le script a lancer dans le conteneur docker : un simple maven test
+script:
+- mvn clean test
