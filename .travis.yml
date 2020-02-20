@@ -6,3 +6,9 @@ addons:
       - ant
 jdk:
   - openjdk8
+deploy:
+  provider: script
+  script: bash scripts/deploy.sh production $TRAVIS_TAG
+  on:
+    tags: true
+    all_branches: true
