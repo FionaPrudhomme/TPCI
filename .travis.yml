@@ -8,8 +8,21 @@ jdk:
   - openjdk8
 jobs:
   include:
-    - stage: "Tests"                # naming the Tests stage
-      name: "Unit Tests"            # names the first Tests stage job
+    - stage: test
+      name: Linux + OpenJDK 8
+      os: linux
+      dist: xenial
+      sudo: required
+      jdk: openjdk8
+      install: true
+      script: ./src/test/java/tcpi/matrix
+    - stage: test
+      name: Linux + OpenJDK 11
+      os: linux
+      dist: xenial
+      sudo: required
+      jdk: openjdk11
+      install: true
       script: ./src/test/java/tcpi/matrix
     - stage : "deploy"
       name: "deploy"
