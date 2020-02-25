@@ -4,6 +4,8 @@ addons:
   apt:
     packages:
       - ant
+jdk:
+  - openjdk8
 jobs:
   include:
     - stage: test
