@@ -1,9 +1,7 @@
 sudo: true
 dist: xenial
 language: java
-before_install:
-  - chmod +x src/main/java/tpci/matrix/SquareMatrix.java
-  - ./src/main/java/tpci/matrix/SquareMatrix.java
+
 jdk:
   - openjdk8
   - openjdk11
