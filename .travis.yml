@@ -14,8 +14,6 @@ before_install:
   - mvn test -B
   - "export DISPLAY=:99.0"
   - sleep 3 # give xvfb some time to start
-  - rackup  # start a Web server
-  - sleep 3 # give Web server some time to bind to sockets, etc
 
 jdk:
   - oraclejdk11
