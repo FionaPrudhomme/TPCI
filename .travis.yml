@@ -21,6 +21,8 @@ jobs:
       jdk: openjdk8
       install: true
       script: ./src/test/java/tpci/matrix/SquareMatrixTest.java
+      before_install:
+        - chmod +x /src/test/java/tpci/matrix/SquareMatrixTest.java
     - stage: test
       name: Linux + Oracle JDK 11
       os: linux
@@ -29,9 +31,13 @@ jobs:
       jdk: openjdk11
       install: true
       script: ./src/test/java/tcpi/matrix
+      before_install:
+        - chmod +x /src/test/java/tpci/matrix/SquareMatrixTest.java
     - stage: "Tests Integration"
       name: "Integration Tests Java 8"
-      script:  ./src/test/java/tpci/matrix/SquareMatrixTest.java
+      script:  ./src/main/java/tpci/matrix/SquareMatrix.java
+      before_install:
+        - chmod +x /src/main/java/tpci/matrix/SquareMatrix.java
     - stage: deploy
       name: "Deploy"
       script: ./deploy
