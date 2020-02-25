@@ -1,9 +1,27 @@
+sudo: true
 dist: xenial
 language: java
+jdk:
+  - openjdk8
+  - openjdk11
+  - openjdk13
+before_install:
+  - chmod +x mvnw
+  - rm ~/.m2/settings.xml || true
+  - ulimit -c unlimited -S
+script:
+  - ./mvnw -Pjakarta-apis -V -B -ff verify
+  - ./mvnw -Pjakarta-apis -V -B -ff -q -pl docs site
+after_success:
+  - bash ci/after_success.sh
+cache:
+  directories:
+    - $HOME/.m2
 addons:
   apt:
     packages:
       - ant
+  
 
 jobs:
   include:
@@ -16,16 +34,17 @@ jobs:
       install: true
       script: ./src/test/java/tcpi/matrix
     - stage: test
-      name: Linux + OpenJDK 11
+      name: Linux + Oracle JDK 11
       os: linux
       dist: xenial
       sudo: required
       jdk: openjdk11
       install: true
       script: ./src/test/java/tcpi/matrix
-    - stage : "deploy"
-      name: "deploy"
-      script: bash scripts/deploy.sh production $TRAVIS_TAG
-        on:
-          tags: true
-          all_branches: true
+    - stage: "Tests Integration"
+      name: "Integration Tests Java 8"
+      script:  src/main/java/tpci/matrix/SquareMatrix.java 
+    - stage: deploy
+      name: "Deploy"
+      script: ./deploy
+
