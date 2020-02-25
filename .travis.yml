@@ -1,16 +1,15 @@
-sudo: true
 dist: xenial
 language: java
+before_install:
+  - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+  - mvn test -B
 
 jdk:
+  - oraclejdk8
+  - oraclejdk11
   - openjdk8
   - openjdk11
   - openjdk13
-addons:
-  apt:
-    packages:
-      - ant
-  
 
 jobs:
   include:
